@@ -1,0 +1,18 @@
+apply plugin: 'groovy'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.4.6'
+    compile 'org.ccil.cowan.tagsoup:tagsoup:1.2'
+}
+
+task runScript (type: JavaExec) {
+    main = 'Scrape'
+    classpath = sourceSets.main.runtimeClasspath
+    if (project.hasProperty('query')) {
+        args(query)
+    }
+}
